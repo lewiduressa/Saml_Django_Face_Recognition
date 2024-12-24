@@ -1,0 +1,30 @@
+{
+    "strict": true,
+    "debug": true,
+    "sp": {
+        "entityId": "https://localhost:8000/app2/",
+        "assertionConsumerService": {
+            "url": "https://localhost:8000/app2/",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+        },
+        "singleLogoutService": {
+            "url": "https://localhost:8000/app2/saml/sls/",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        },
+        "NameIDFormat": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+        "x509cert": "", // cert removed. Enter your own here. Use openssl to generate one
+        "privateKey": "" // key removed. Enter your own here. Use openssl to generate one
+    },
+    "idp": {
+        "entityId": "https://sts.windows.net/9abfe173-369e-4e55-bfcc-221101d35a33/",
+        "singleSignOnService": {
+            "url": "https://login.microsoftonline.com/9abfe173-369e-4e55-bfcc-221101d35a33/saml2",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        },
+        "singleLogoutService": {
+            "url": "https://login.microsoftonline.com/9abfe173-369e-4e55-bfcc-221101d35a33/saml2",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        },
+        "x509cert": "" // cert removed. Enter your own from MS Azure
+    }
+}

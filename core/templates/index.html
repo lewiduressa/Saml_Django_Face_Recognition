@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block content %}
+
+{% if errors %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Errors:</strong>
+        <ul class="list-unstyled">
+            {% for err in errors %}
+            <li>{{err}}</li>
+            {% endfor %}
+        </ul>
+        {% if error_reason %}
+        <p><b>Reason:</b> {{error_reason}}</p>
+        {% endif %}
+    </div>
+{% endif %}
+
+{% if not_auth_warn %}
+    <div class="alert alert-danger" role="alert">Not authenticated</div>
+{% endif %}
+
+{% if success_slo %}
+    <div class="alert alert-success" role="alert">Successfully logged out</div>
+{% endif %}
+
+<h1 class="text-center">Welcome to Face-Recongnition App</h1>
+
+{% if paint_logout %}
+    <div>
+        <p><strong>Face Detected Name:</strong><span id="name"></span></p> <br>
+        <video id="stream-video-element" style="-webkit-transform: scaleX(-1); transform: scaleX(-1);"></video> <br>
+        <canvas id="myCanvas" class="d-none"></canvas>
+        <canvas id="myCanvas2" class="d-none"></canvas>
+    </div>
+    <button id="new_user" class="btn btn-primary mt-3">New user? Fill out form to be face recognized!</button>
+    <form class="container mt-3 d-flex flex-column justify-content-space-around d-none" action="" method="POST">
+        <button type="submit" class="btn btn-success" id="snapshot">Capture Photo And Submit</button>
+    </form>
+    <br><a href="{% url "face_rec_slo" %}" class="btn btn-danger mt-3">Logout</a>
+{% else %}
+    <a href="{% url "root" %}?sso" class="btn btn-primary mt-3">Login</a>
+{% endif %}
+{% endblock %}
